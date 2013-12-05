@@ -1,0 +1,6 @@
+N = 100
+n = 3
+tau = 1e-4
+tau_end = 0.4
+k = 0
+omega = 0

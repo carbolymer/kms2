@@ -1,0 +1,276 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[T1]{fontenc}
+\usepackage{enumerate}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{morefloats}
+\author{Mateusz Gałażyn}
+\title{Dynamika kwantowa naładowanej cząstki w pudle w zmiennym polu elektrycznym}
+\setlength{\topmargin}{0mm}
+\frenchspacing
+\begin{document}
+	\maketitle
+	\section{Wstęp}
+	Celem projektu było wykonanie symulacji zachowania cząstki kwantowej przez numeryczne rozwiązaywanie ależnego od czasu równania Shroedingera. W tym celu, algorytm podany w instrukcji ćwiczenia został zaimplementowany w języku \verb|C++|. Dodatkowo została stworzony skrypt do generowania wykresów napisany w \verb|Octave|.
+	\section{Wyniki symulacji}
+	\subsection{Test programu}
+	W celu znalezienia największego kroku czasowego, dla którego algorytm wykazywał stabilność (energia oraz norma nie wzrastała do nieskończoności), zostały wykonane testy dla różnych kroków czasowych: $\tau = 1 \cdot 10^{-4},1.01 \cdot 10^{-4}, 1.0005 \cdot 10^{-4}$. Wyniki testów zostały przedstawione na rys. \ref{performance}. Algorytm zachowuje się stabilnie dla kroku czasowego mniejszego od $1 \cdot 10^{-4}$ - ta wartość została użyta w kolejnych symulacjach.
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=1\textwidth]{stability}
+	    \caption{Względny przyrost energii w stosunku do energii początkowej dla trzech kroków czasowych. Algorytm wykazuje stabilność dla $\tau=1 \cdot 10^{-4}$}
+		\label{performance}
+	\end{figure}
+	\clearpage	
+	\subsection{Symulacja z wyłączonym polem}
+	Dla wyłaczonego pola została wykonana symulacja o długości 4000 kroków. Obszar, na którym obliczana była funkcja falowa został podzielony na 100 części. Zostały wykonane symulacje dla $n$ = 1,2,3,4,9. Wartości energii maksymalnych dla poszczególnych stanów stacjonarnych:
+	\begin{center}
+		\begin{tabular}{r|r}
+			n & $<E>_{max}$\\
+			\hline
+			\hline
+			1 & 4.93 \\
+			2 & 19.75 \\
+			3 & 44.48 \\
+			4 & 79.16 \\
+			9 & 404.87
+		\end{tabular}
+	\end{center}
+	Poniżej zostały przedstawione wybrane wykresy energii, normy funkcji falowej, rozkładu prawdopodobieństwa w studni potencjału oraz położenia cząstki w zależności od czasu trwania symulcji dla trzech stanów stacjonarnych.
+	%%%%%%%%%%%%
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n1/E}
+	    \caption{Wykres energii dla poziomu energetycznego $n = 1$}
+		\label{n1e}
+	\end{figure}		
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n1/N}
+	    \caption{Wykres normy dla poziomu energetycznego $n = 1$}
+		\label{n1n}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n1/P}
+	    \caption{Wykres rozkładu prawdopodobieństwa na początku symulacji, w połowie symulacji oraz na końcu symulacji dla poziomu energetycznego $n = 1$}
+		\label{n1p}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n1/X}
+	    \caption{Wykres położenia cząstki dla poziomu energetycznego $n = 1$}
+		\label{n1x}
+	\end{figure}
+
+	%%%%%%%%%%%%
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n4/E}
+	    \caption{Wykres energii dla poziomu energetycznego $n = 4$}
+		\label{n4e}
+	\end{figure}		
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n4/N}
+	    \caption{Wykres normy dla poziomu energetycznego $n = 4$}
+		\label{n4n}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n4/P}
+	    \caption{Wykres rozkładu prawdopodobieństwa na początku symulacji, w połowie symulacji oraz na końcu symulacji dla poziomu energetycznego $n = 4$}
+		\label{n4p}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n4/X}
+	    \caption{Wykres położenia cząstki dla poziomu energetycznego $n = 4$}
+		\label{n4x}
+	\end{figure}
+
+	%%%%%%%%%%%%
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n9/E}
+	    \caption{Wykres energii dla poziomu energetycznego $n = 9$}
+		\label{n9e}
+	\end{figure}		
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n9/N}
+	    \caption{Wykres normy dla poziomu energetycznego $n = 9$}
+		\label{n9n}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n9/P}
+	    \caption{Wykres rozkładu prawdopodobieństwa na początku symulacji, w połowie symulacji oraz na końcu symulacji dla poziomu energetycznego $n = 9$}
+		\label{n9p}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{n9/X}
+	    \caption{Wykres położenia cząstki dla poziomu energetycznego $n = 9$}
+		\label{n9x}
+	\end{figure}
+
+	Dla każdej z symulacji norma funkcji falowej oraz jej kształt nie zmienia się w czasie. Średnie położenie jest równe $<x>=0.5$. Wartość energii wykazuje niewielkie oscylacje wokół ustalonej wartości.
+	\clearpage
+
+	\subsection{Symulacja z włączonym polem}
+	Zostały wykonane symulacje z włączonym polem dla poziomu energetycznego $n=1$ oraz częstościami rezonansowymi $\omega = 3\pi^2/2, 4\pi^2/2, 8\pi^2/2, 15\pi^2/2$. Parametr $\kappa = 5$, czas trwania symulacji wynosił 20 (200000 kroków). Poniżej zostały przedstawione wykresy energii, normy, gęstości prawdopodobieństwa i położenia:
+	%%%%%%%%%%%%
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t3/E}
+	    \caption{Wykres energii dla poziomu energetycznego $n = 1$ i $\omega = 3\pi^2/2$.}
+		\label{t3e}
+	\end{figure}		
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t3/N}
+	    \caption{Wykres normy dla poziomu energetycznego $n = 1$ i $\omega = 3\pi^2/2$.}
+		\label{t3n}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t3/P}
+	    \caption{Wykres rozkładu prawdopodobieństwa na początku symulacji, w połowie symulacji oraz na końcu symulacji dla poziomu energetycznego $n = 1$ i $\omega = 3\pi^2/2$.}
+		\label{t3p}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t3/X}
+	    \caption{Wykres położenia cząstki dla poziomu energetycznego $n = 1$ i $\omega = 3\pi^2/2$.}
+		\label{t3x}
+	\end{figure}
+
+	%%%%%%%%%%%%
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t4/E}
+	    \caption{Wykres energii dla poziomu energetycznego $n = 1$ i $\omega = 4\pi^2/2$.}
+		\label{t4e}
+	\end{figure}		
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t4/N}
+	    \caption{Wykres normy dla poziomu energetycznego $n = 1$ i $\omega = 4\pi^2/2$.}
+		\label{t4n}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t4/P}
+	    \caption{Wykres rozkładu prawdopodobieństwa na początku symulacji, w połowie symulacji oraz na końcu symulacji dla poziomu energetycznego $n = 1$ i $\omega = 4\pi^2/2$.}
+		\label{t4p}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t4/X}
+	    \caption{Wykres położenia cząstki dla poziomu energetycznego $n = 1$ i $\omega = 4\pi^2/2$.}
+		\label{t4x}
+	\end{figure}
+
+	%%%%%%%%%%%%
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t8/E}
+	    \caption{Wykres energii dla poziomu energetycznego $n = 1$ i $\omega = 8\pi^2/2$.}
+		\label{t8e}
+	\end{figure}		
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t8/N}
+	    \caption{Wykres normy dla poziomu energetycznego $n = 1$ i $\omega = 8\pi^2/2$.}
+		\label{t8n}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t8/P}
+	    \caption{Wykres rozkładu prawdopodobieństwa na początku symulacji, w połowie symulacji oraz na końcu symulacji dla poziomu energetycznego $n = 1$ i $\omega = 8\pi^2/2$.}
+		\label{t8p}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t8/X}
+	    \caption{Wykres położenia cząstki dla poziomu energetycznego $n = 1$ i $\omega = 8\pi^2/2$.}
+		\label{t8x}
+	\end{figure}
+
+	%%%%%%%%%%%%
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t15/E}
+	    \caption{Wykres energii dla poziomu energetycznego $n = 1$ i $\omega = 15\pi^2/2$.}
+		\label{t15e}
+	\end{figure}		
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t15/N}
+	    \caption{Wykres normy dla poziomu energetycznego $n = 1$ i $\omega = 15\pi^2/2$.}
+		\label{t15n}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t15/P}
+	    \caption{Wykres rozkładu prawdopodobieństwa na początku symulacji, w połowie symulacji oraz na końcu symulacji dla poziomu energetycznego $n = 1$ i $\omega = 15\pi^2/2$.}
+		\label{t15p}
+	\end{figure}
+
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{t15/X}
+	    \caption{Wykres położenia cząstki dla poziomu energetycznego $n = 1$ i $\omega = 15\pi^2/2$.}
+		\label{t15x}
+	\end{figure}
+	Przejście rezonansowe następuje gdy elektron przechodzi ze stanu podstawowego do jednego ze stanów wzbudzonych pod wpływem pola elektrycznego. Uwydatnia się to wahaniami energii oraz pojawieniem się wyższych stanów energetycznych na wykresie prawdopodobieństwa.  Przejścia rezonansowe zostały zaobserwowane dla następujących poziomów energetycznych:
+	\begin{center}
+		\begin{tabular}{r|c}
+			$\omega$ & Przejście rezonansowe\\
+			\hline
+			\hline
+			$3\pi^2/2$ & 1$\rightarrow$2 \\
+			$4\pi^2/2$ & 1$\rightarrow$3 \\
+			$8\pi^2/2$ & nie \\
+			$15\pi^2/2$ & 1$\rightarrow$4
+		\end{tabular}
+	\end{center}
+	\clearpage
+	\subsubsection{Badanie okolicy rezonansu}
+	Została wykonana seria symulacji w celu zbadania okolicy przejścia rezonansowego 1$\rightarrow$2 ($\omega_0 = 3\pi^2/2$). Parametry symulacji: ilość kroków: 10000, $\kappa$ = 5. Wyniki:
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.9\textwidth]{resonance}
+	    \caption{Wykres energii maksymalnej dla okolicy przejścia rezonansowego 1$\rightarrow$2.}
+		\label{t15x}
+	\end{figure}
+
+	Widoczne jest maksimum energii dla częstotliwości rezonansowej, wskazujące zachodzenie przejścia 1$\rightarrow$2.
+	\section{Wnioski}
+	W trakcie ćwiczenia została napisana aplikacja symulująca dynamikę kwantową naładowanej cząstki w nieskończonej studni potencjału. Wyniki zgadzają się z przewidywaniami teoretycznymi - położenie cząstki oscyluje wokół wartości 0.5 (w przypadku wyłączonego pola jest zawsze równe 0.5), ewolucja funkcji falowej jest zgodna z założeniami poczatkowymi: norma jest stała i równa 1, w przypadku braku pola nie występuje samoistna zmiana funkcji falowej. Badanie okolicy rezonansu wskazuje na istnienie przejścia na poziom wzbudzony w przypadku częstotliwości równej częstotliwości rezonansowej: widoczne jest maksimum energii dla tej częśtotliwości.
+\end{document}
